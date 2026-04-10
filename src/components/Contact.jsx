@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
 import clientData from "@/data/clientData";
 import { Mail, MapPin, Send, MessageCircle, Phone } from "lucide-react";
 
@@ -31,45 +30,34 @@ export default function Contact() {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!validate()) return;
-    
-    setStatus("loading");
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!validate()) return;
 
-    const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+  setStatus("loading");
 
-    if (!serviceID || !templateID || !publicKey) {
-      setTimeout(() => {
-        setStatus("success");
-      }, 1500);
-      return;
+  try {
+    const res = await fetch("/api/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+    } else {
+      setStatus("error");
     }
-
-    emailjs.send(
-  serviceID,
-  templateID,
-  {
-    from_name: formData.name,
-    from_email: formData.email,
-    message: formData.message,
-    to_name: clientData.name,
-  },
-  publicKey
-)
-      .then(
-        () => {
-          setStatus("success");
-          setFormData({ name: "", email: "", message: "" });
-        },
-        (error) => {
-          console.error("Failed to send message", error);
-          setStatus("error");
-        }
-      );
-  };
+  } catch (error) {
+    console.error("Failed to send message", error);
+    setStatus("error");
+  }
+};
 
   return (
     <section id="contact" className="py-16 px-6 bg-gradient-to-b from-fuchsia-50/20 to-transparent dark:from-fuchsia-900/10 dark:to-transparent">
