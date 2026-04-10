@@ -9,14 +9,13 @@ This is my personal portfolio website built to showcase my skills, projects, and
 It features a modern UI, smooth animations, and a fully functional contact system.
 
 ✨ Features
-🎨 Modern and responsive design
-⚡ Fast performance with Next.js
-🌙 Dark/Light mode support
-📂 Projects showcase section
-📜 Certificates & education sections
-📩 Contact form with real email sending (Nodemailer + Gmail)
-🚀 Deployed on Vercel
-🛠️ Tech Stack
+
+- Modern and responsive design
+- Fast performance with Next.js
+- Dark/Light mode support
+- Certificates & education sections
+- Contact form with real email sending (Nodemailer + Gmail)
+
 Frontend: Next.js, React, Tailwind CSS
 Backend: Next.js API Routes
 Email Service: Nodemailer (Gmail SMTP)
