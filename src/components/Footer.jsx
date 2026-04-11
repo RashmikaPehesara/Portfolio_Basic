@@ -6,7 +6,7 @@ export default function Footer() {
           © 2026 All Rights Reserved by John Doe
         </p>
         <p className="text-gray-500 dark:text-gray-500 text-sm transition-colors duration-300">
-          Made with ❤️ by <a href="https://facebook.com/pixorastudio" target="_blank" rel="noreferrer" className="text-blue-500 hover:text-blue-600 transition-colors font-medium">Pixora Studio</a>
+          Made with ❤️ by <a  href="https://wa.me/94768638725" target="_blank" rel="noreferrer" className="text-blue-500 hover:text-blue-600 transition-colors font-medium">Pixora Studio</a>
         </p>
       </div>
     </footer>
